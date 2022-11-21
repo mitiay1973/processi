@@ -23,5 +23,8 @@
     <Text Include="Otvet.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
+    <Text Include="zadacha.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>

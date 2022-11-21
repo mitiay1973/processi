@@ -1,10 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define _CRT_NONSTDC_NO_DEPRECATE
 #include <stdio.h>
+#include<stdlib.h>
 #include <math.h>
 #include <Windows.h>
 
-#define PATH "C:\\Users\\СорокинДА\\source\\repos\\processi\\x64\\Debug\\proces_chet.exe"
-
+#define PATH "C:\\Users\\СорокинДА\\source\\repos\\processi\\x64\\Debug\\proces_chet.exe "
 
 void main()
 {
@@ -12,7 +13,7 @@ void main()
 	FILE* file;
 	char line[254];
 	float x1, x2;
-	float a1 = 0, b1 = 0, c1 = 0;
+	float a1 = 0, b1 = 0, c1 = 0, a11=0,b11=0,c11=0;
 	if ((file = fopen("zadacha.txt", "r")))
 	{
 		fgets(line, 254, file);
@@ -39,6 +40,7 @@ void main()
 				{
 					chha = chha * 10;
 				}
+				a11 = a1;
 				a1 = a1 / chha;
 				ymna = 1;
 			}
@@ -89,6 +91,7 @@ void main()
 				{
 					chhb = chhb * 10;
 				}
+				b11 = b1;
 				b1 = b1 / chhb;
 				ymnb = 1;
 			}
@@ -138,6 +141,7 @@ void main()
 				{
 					chhc = chhc * 10;
 				}
+				c11 = c1;
 				c1 = c1 / chhc;
 				ymnc = 1;
 			}
@@ -170,14 +174,21 @@ void main()
 	ZeroMemory(&si, sizeof(si));
 	si.cb = sizeof(si);
 	ZeroMemory(&pi, sizeof(pi));
-	char str[4];
-	str[0] = &PATH;
-	str[1] = a1;
-	str[2] = b1;
-	str[3] = c1;
-	LPWSTR p = &PATH;
-
-	if (!CreateProcessA(NULL, p, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
+	char* koef = malloc(100);
+	char sta[20];
+	char stb[20];
+	char stc[20];
+	char staa[20];
+	char stbb[20];
+	char stcc[20];
+	itoa(a1, sta, 10);
+	itoa(b1, stb, 10);
+	itoa(c1, stc, 10);
+	itoa(a11, staa, 10);
+	itoa(b11, stbb, 10);
+	itoa(c11, stcc, 10);
+	snprintf(koef, 100, "%s %s.%s %s.%s %s.%s",PATH ,sta,staa,stb,stbb, stc,stcc);
+	if (!CreateProcessA(NULL,koef, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
 	{
 		printf("Ошибка");
 	}
